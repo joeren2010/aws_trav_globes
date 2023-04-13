@@ -1,8 +1,14 @@
 pipeline {
-   agent {
-      docker-compose -p -f docker-compose.yml up --build
-   }
+   agent any
    stages{
+      stage("docker-compose") {
+         steps{
+            echo 'docker-compose'
+            sh "docker-compose build"
+            sh "docker-compose up -d"
+            // docker-compose -f docker-compose.yml up --build
+         }
+      }
       stage("hello") {
          steps{
             echo 'hello world'
@@ -24,10 +30,9 @@ pipeline {
          }
       }
    }
-
    post {
       always {
-         sh "docker-compose down -v"
+         sh "docker-compose down || true"
       }
-    }
+   }
 }
