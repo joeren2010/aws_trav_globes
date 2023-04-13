@@ -1,0 +1,391 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Globes</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" routerLink="/home" [skipLocationChange]="true">
+                  HOME
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/about" [skipLocationChange]="true">
+                  ABOUT
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/contact" [skipLocationChange]="true">
+                  CONTACT
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/resv/resvcab" [skipLocationChange]="true">
+                  CABS
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/resv/resvhotel" [skipLocationChange]="true">
+                  HOTELS
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/resv/resvflight" [skipLocationChange]="true">
+                  FLIGHTS
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/cart" [skipLocationChange]="true">
+                  RESV CART
+                  <!-- <span class="badge badge-light ml-1" *ngIf="resvcabService.cartCabs.length !== 0"> 
+                     {{resvcabService.cabs.length || 0 }}
+                  </span> -->
+                  <span *ngIf="resvcabService.cabs.length !==0"
+                     class="position-absolute top-2 start-10 translate-middle badge rounded-pill bg-danger">
+                     {{resvcabService.cabs.length || 0}}
+                     <span class="visually-hidden">unread messages</span>
+                  </span>
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" routerLink="/wishlist" [skipLocationChange]="true">
+                  WISHLIST
+                  <!-- <span class="badge badge-light ml-1" *ngIf="resvcabService.wishlistCabs.length !== 0"> 
+                     {{resvcabService.wishlistCabs.length || 0 }}
+                  </span>-->
+                  <span *ngIf="resvcabService.wishlistCabs.length !==0"
+                     class="position-absolute top-2 start-10 translate-middle badge rounded-pill bg-danger">
+                     {{resvcabService.wishlistCabs.length || 0}}
+                     <span class="visually-hidden">unread messages</span>
+                  </span>
+               </a>
+            </li>
+            <div *ngIf="loggedIn">
+               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                     <a class="nav-link" routerLink="/helpcenter" [skipLocationChange]="true">
+                        HELP CENTER
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <ul class="navbar-nav ml-auto mr-20">
+               <div *ngIf="!loggedIn">
+                  <ul class="navbar-nav ml-auto mr-20">
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/auth/newregister" [skipLocationChange]="true">
+                           SIGNUP
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/client" [skipLocationChange]="true">
+                           <strong>CLIENT </strong>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/driver" [skipLocationChange]="true">
+                           <strong>DRIVER</strong>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/admin" [skipLocationChange]="true">
+                           <strong>ADMIN</strong>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+               <div *ngIf="loggedInClient">
+                  <ul class="navbar-nav ml-auto mr-20">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           MY RESV
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/resv/resvclient" [skipLocationChange]="true">
+                              <strong>My Reservations</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/cab/cabcatclient" [skipLocationChange]="true">
+                              <strong>Cabs Categories</strong>
+                           </a>
+                        </div>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/offer/offerclient" [skipLocationChange]="true">
+                           OFFERS
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/payment/payclient" [skipLocationChange]="true">
+                           PAYMENT
+                        </a>
+                     </li>
+                     <li>
+                        <form class="d-flex">
+                           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                           <button class="btn btn-outline-light" type="submit">SEARCH</button>
+                        </form>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           <strong>CLIENT ACCT</strong>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/auth/myprofile" [skipLocationChange]="true">
+                              <strong>Update Profile</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/newpasswd" [skipLocationChange]="true">
+                              <strong>New Password</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/mysetting" [skipLocationChange]="true">
+                              <strong>Update Setting</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="#" (click)="logoutClient()" [skipLocationChange]="true">
+                              <strong>Clients Signout</strong>
+                           </a>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div *ngIf="loggedInDriver">
+                  <ul class="navbar-nav ml-auto mr-20">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           RESV TASKS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/resv/resvdriver" [skipLocationChange]="true">
+                              <strong>Reservations</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/cab/cabcatdriver" [skipLocationChange]="true">
+                              <strong>TypeOf Cabs</strong>
+                           </a>
+                        </div>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/offer/offerdriver" [skipLocationChange]="true">
+                           OFFERS
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/payment/paydriver" [skipLocationChange]="true">
+                           MY PAY
+                        </a>
+                     </li>
+                     <li>
+                        <form class="d-flex">
+                           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                           <button class="btn btn-outline-light" type="submit">SEARCH</button>
+                        </form>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           <strong>DRIVER ACCT</strong>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/auth/myprofile" [skipLocationChange]="true">
+                              <strong>Update Profile</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/newpasswd" [skipLocationChange]="true">
+                              <strong>New Password</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/mysetting" [skipLocationChange]="true">
+                              <strong>Update Setting</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="#" (click)="logoutDriver()" [skipLocationChange]="true">
+                              <strong>Driver Signout</strong>
+                           </a>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div *ngIf="loggedInAdmin">
+                  <ul class="navbar-nav ml-auto mr-20">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           CABS MGT
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/cab" [skipLocationChange]="true">
+                              <strong>Cab Dashboard</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/cab/cabcategory" [skipLocationChange]="true">
+                              <strong>Cab Categories</strong>
+                           </a>
+                        </div>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/resv" [skipLocationChange]="true">
+                           RESV MGT
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/offer" [skipLocationChange]="true">
+                           OFFER MGT
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/payment" [skipLocationChange]="true">
+                           PAY MGT
+                        </a>
+                     </li>
+                     <li>
+                        <form class="d-flex">
+                           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                           <button class="btn btn-outline-light" type="submit">SEARCH</button>
+                        </form>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           <strong>ADMIN ACCT</strong>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/auth/newregister" [skipLocationChange]="true">
+                              <strong>Create Signup</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/myprofile" [skipLocationChange]="true">
+                              <strong>Update Profile</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/newpasswd" [skipLocationChange]="true">
+                              <strong>New Password</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/auth/mysetting" [skipLocationChange]="true">
+                              <strong>Update Setting</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="#" (click)="logoutAdmin()" [skipLocationChange]="true">
+                              <strong>Admin Signout</strong>
+                           </a>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </ul>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+
+
+
+
+<!-- <li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      USERS
+   </a>
+   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li>
+         <a class="dropdown-item" routerLink="/users" [skipLocationChange]="true">
+            <strong>Listof Users</strong>
+         </a>
+      </li>
+      <li>
+         <a class="dropdown-item" routerLink="/users/create" [skipLocationChange]="true">
+            <strong>Create User</strong>
+         </a>
+      </li>
+      <li>
+         <a class="dropdown-item" routerLink="/users/view" [skipLocationChange]="true">
+            <strong>User Details</strong>
+         </a>
+      </li>
+   </ul>
+</li>
+<li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" routerLink="/products" role="button" data-bs-toggle="dropdown"
+      aria-expanded="false" routerLinkActive>
+      PRODUCTS
+   </a>
+   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li>
+         <a class="dropdown-item" routerLink="/products/categories" [skipLocationChange]="true">
+            <strong> Rides </strong>
+         </a>
+      </li>
+   </ul>
+</li>
+<li class="nav-item">
+   <a class="nav-link" routerLink="#" [skipLocationChange]="true">
+      SHIPMENTS
+   </a>
+</li> -->
+
+
+
+<!-- 
+<li>
+   <a class="dropdown-item" routerLink="/products/create" [skipLocationChange]="true">
+      Create Products
+   </a>
+</li>
+<li>
+   <a class="dropdown-item" routerLink="/products/update" [skipLocationChange]="true">
+      Update Product
+   </a>
+</li>
+<li>
+   <a class="dropdown-item" routerLink="/products/view" [skipLocationChange]="true">
+      Products Details
+   </a>
+</li>
+-->
+
+
+<!-- <li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" routerLink="/cab/listofcabs" role="button"
+      data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive>
+      CABS MGT
+   </a>
+   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li>
+         <a class="dropdown-item" routerLink="/cab/listofcabs" [skipLocationChange]="true">
+            <strong>ListOf Cabs</strong>
+         </a>
+      </li>
+      <li>
+         <a class="dropdown-item" routerLink="/cab/cabrequest" [skipLocationChange]="true">
+            <strong> Cab Requests </strong>
+         </a>
+      </li>
+   </ul>
+</li> -->
+
+
+<!-- <li class="nav-item">
+   <a class="nav-link" routerLink="/orders" [skipLocationChange]="true">
+      BOOKING
+   </a>
+</li> -->
+<!-- <li class="nav-item">
+   <a class="nav-link" routerLink="/orders" [skipLocationChange]="true">
+      SIGNUP
+   </a>
+</li> -->
+
+
+<!-- <div *ngIf="loggedIn">
+   <li>
+      <form class="d-flex">
+         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+         <button class="btn btn-outline-light" type="submit">SEARCH</button>
+      </form>
+   </li>
+</div> -->
+
+
+<!-- <li>
+   <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light" type="submit">SEARCH</button>
+   </form>
+</li> -->

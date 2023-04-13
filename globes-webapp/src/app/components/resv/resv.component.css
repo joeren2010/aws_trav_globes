@@ -1,0 +1,17 @@
+#selected {
+   /* border: none !important; */
+   /* outline: none !important; */
+   color: white !important;
+   background-color: mediumseagreen;
+   padding: auto;
+   /* margin: auto !important; */
+}
+
+#btn-jj {
+   border: none !important;
+   /* outline: none !important; */
+   /* color: white !important; */
+   background-color: mediumseagreen;
+   padding: 1px;
+   /* margin: 0px !important; */
+}

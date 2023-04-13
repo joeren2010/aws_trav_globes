@@ -1,0 +1,258 @@
+version: "3.7"
+services:
+  ms_globes_eureka:
+    image: eurekaserver
+    container_name: ms_globes_eureka
+    ports:
+      - "8761:8761"      
+    build:
+      context: ./globes-sprboot/eurekaserver/
+      dockerfile: dockerfile
+    # expose:
+    #   - "8761"
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_reka:/var/lib/mysql'      
+    networks:
+      - backend
+      - frontend
+    restart: always   
+
+
+  ms_globes_admin:
+    image: ms_globes_admin
+    container_name: ms_globes_admin
+    ports:
+      - "6161:6161"      
+    build:
+      context: ./globes-sprboot/admin/
+      dockerfile: dockerfile    
+    environment:
+      eureka.client.service-url.defaultZone: http://ms_globes_eureka:8761/eureka
+    links:
+      - ms_globes_eureka
+    depends_on:
+      - ms_globes_eureka
+      - db_globes_admin
+    networks:
+      - backend
+      - frontend
+    restart: always    
+  db_globes_admin:
+    image: mysql:8
+    container_name: db_globes_admin
+    ports:
+      - 3311:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_globes_admin   
+      MYSQL_USER: joeren
+      MYSQL_PASSWORD: joeren
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_adm:/var/lib/mysql'    
+    networks:
+      - backend
+    restart: always
+
+
+  ms_globes_cab:
+    image: ms_globes_cab
+    container_name: ms_globes_cab
+    ports:
+      - "7171:7171"      
+    build:
+      context: ./globes-sprboot/cab/
+      dockerfile: dockerfile    
+    environment:
+      eureka.client.service-url.defaultZone: http://ms_globes_eureka:8761/eureka
+    links:
+      - ms_globes_eureka
+    depends_on:
+      - ms_globes_eureka
+      - db_globes_cab
+    networks:
+      - backend
+      - frontend
+    restart: always    
+  db_globes_cab:
+    image: mysql:8
+    container_name: db_globes_cab
+    ports:
+      - 3312:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_globes_cab   
+      MYSQL_USER: joeren
+      MYSQL_PASSWORD: joeren
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_cab:/var/lib/mysql'    
+    networks:
+      - backend
+    restart: always
+
+
+  ms_globes_cart:
+    image: ms_globes_cart
+    container_name: ms_globes_cart
+    ports:
+      - "5151:5151"      
+    build:
+      context: ./globes-sprboot/cart/
+      dockerfile: dockerfile    
+    environment:
+      eureka.client.service-url.defaultZone: http://ms_globes_eureka:8761/eureka       
+    links:
+      - ms_globes_eureka
+    depends_on:
+      - ms_globes_eureka
+      - db_globes_cart
+    networks:
+      - backend
+      - frontend
+    restart: always    
+  db_globes_cart:
+    image: mysql:8
+    container_name: db_globes_cart
+    ports:
+      - 3313:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_globes_cart   
+      MYSQL_USER: joeren
+      MYSQL_PASSWORD: joeren
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_cart:/var/lib/mysql'    
+    networks:
+      - backend
+    restart: always
+
+
+  ms_globes_client:
+    image: ms_globes_client
+    container_name: ms_globes_client
+    ports:
+      - "8181:8181"      
+    build:
+      context: ./globes-sprboot/client/
+      dockerfile: dockerfile    
+    environment:
+      eureka.client.service-url.defaultZone: http://ms_globes_eureka:8761/eureka       
+    links:
+      - ms_globes_eureka
+    depends_on:
+      - ms_globes_eureka
+      - db_globes_client
+    networks:
+      - backend
+      - frontend
+    restart: always    
+  db_globes_client:
+    image: mysql:8
+    container_name: db_globes_client
+    ports:
+      - 3314:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_globes_client   
+      MYSQL_USER: joeren
+      MYSQL_PASSWORD: joeren
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_clt:/var/lib/mysql'    
+    networks:
+      - backend
+    restart: always
+
+
+  ms_globes_driver:
+    image: ms_globes_driver
+    container_name: ms_globes_driver
+    ports:
+      - "9191:9191"      
+    build:
+      context: ./globes-sprboot/driver/
+      dockerfile: dockerfile    
+    environment:
+      eureka.client.service-url.defaultZone: http://ms_globes_eureka:8761/eureka       
+    links:
+      - ms_globes_eureka
+    depends_on:
+      - ms_globes_eureka
+      - db_globes_driver
+    networks:
+      - backend
+      - frontend
+    restart: always    
+  db_globes_driver:
+    image: mysql:8
+    container_name: db_globes_driver
+    ports:
+      - 3315:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_globes_driver   
+      MYSQL_USER: joeren
+      MYSQL_PASSWORD: joeren
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_dvr:/var/lib/mysql'    
+    networks:
+      - backend
+    restart: always
+
+
+  ms_globes_resv:
+    image: ms_globes_resv
+    container_name: ms_globes_resv
+    ports:
+      - "4141:4141"      
+    build:
+      context: ./globes-sprboot/resv/
+      dockerfile: dockerfile    
+    environment:
+      eureka.client.service-url.defaultZone: http://ms_globes_eureka:8761/eureka
+    links:
+      - ms_globes_eureka
+    depends_on:
+      - ms_globes_eureka
+      - db_globes_resv
+    networks:
+      - backend
+      - frontend
+    restart: always    
+  db_globes_resv:
+    image: mysql:8
+    container_name: db_globes_resv
+    ports:
+      - 3316:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_globes_resv   
+      MYSQL_USER: joeren
+      MYSQL_PASSWORD: joeren
+    # volumes: 
+    #   - './globes-dkerfiles/dker_globes_resv:/var/lib/mysql'    
+    networks:
+      - backend
+    restart: always
+
+
+  ng_globes_webapp:
+    image: ng_globes_webapp 
+    container_name: ng_globes-webapp  
+    ports:
+      - "4030:80"
+    build:
+      context: ./globes-webapp/
+      dockerfile: dockerfile
+    depends_on:
+      - ms_globes_admin      
+      - ms_globes_cab      
+      - ms_globes_cart      
+      - ms_globes_client      
+      - ms_globes_driver      
+      - ms_globes_resv     
+    networks:
+      - frontend 
+    restart: always
+
+networks:
+  frontend:
+  backend:

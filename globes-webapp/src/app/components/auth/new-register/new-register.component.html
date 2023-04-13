@@ -1,0 +1,116 @@
+<div class="container-fluid vh-100">
+   <div class="row" style="height: inherit;">
+      <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-start px-4" id="bg">
+         <h3 class="text-white text-uppercase m-0 mb-1">Globes Travel</h3>
+         <p class="m-0 text-white h5">User Signup</p>
+         <ul class="list-group mt-5 text-white" style="list-style-type: none; margin: 0; padding: 0;">
+            <li>Manage Dynamic Content For Your Website</li>
+            <li>An Optimal, Reliable And Dynamic Web Backend</li>
+            <li>Modern Secure Interface Based On Google Cloud</li>
+         </ul>
+      </div>
+      <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center">
+         <div class="card w-75 shadow-sm">
+            <div class="card-header bg-white border-0">
+               <h3 class="text-center m-0"><strong>User Signup</strong></h3>
+            </div>
+            <div class="card-body">
+               <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+                  <div class="form-row">
+                     <div class="form-group col-sm-6 mb-3">
+                        <div class="dropdown">
+                           <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="selected"
+                              (change)="sortMembership(selected)" #selected>
+                              <option selected class="badge bg-secondary" style="font-size: 14px;">
+                                 <span>Select Your Membership Type</span>
+                              </option>
+                              <option value="1" class="badge bg-primary" style="font-size: 14px;">
+                                 <span>I Am A Client</span>
+                              </option>
+                              <option value="2" class="badge bg-warning" style="font-size: 14px;">
+                                 <span>I Am A Driver</span>
+                              </option>
+                              <option value="3" class="badge bg-success" style="font-size: 14px;">
+                                 <span>I Am An Admin</span>
+                              </option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" class="form-control" id="fullname" autocomplete="off"
+                           formControlName="fullname" aria-describedby="fullname" placeholder="enter fullname" required>
+                     </div>
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" autocomplete="off"
+                           formControlName="address" aria-describedby="address" placeholder="enter your address"
+                           required>
+                     </div>
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="phone">Contact Phone</label>
+                        <input type="text" class="form-control" id="phone" autocomplete="off" aria-describedby="phone"
+                           formControlName="phone" placeholder="enter your phone number" required>
+                     </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" autocomplete="off" aria-describedby="email"
+                           formControlName="email" placeholder="eg: abc@test.com" required>
+                        <!-- <small id="emailHelp" class="form-text text-muted">we'll never share your email with anyone</small> -->
+                     </div>
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" autocomplete="off"
+                           formControlName="username" aria-describedby="username" placeholder="enter username" required>
+                        <!-- <small id="usernameHelp" class="form-text text-muted">
+                              We'll never share your username with anyone else
+                           </small> -->
+                     </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" autocomplete="off" id="password"
+                           formControlName="password" placeholder="enter your password" required>
+                     </div>
+                     <div class="form-group col-sm-6 mb-3">
+                        <label for="cfm-password">Confirm Password</label>
+                        <input type="password" class="form-control" autocomplete="off" id="cfm-password"
+                           formControlName="cfmpassword" placeholder="re-enter your password" required>
+                     </div>
+                  </div>
+                  <div class="form-group form-check mb-3">
+                     <input type="checkbox" class="form-check-input" id="remember" required>
+                     <label class="form-check-label" for="remember">Remember Me</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                     <div class="badge bg-dark" style="font-size: 12px">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false" style="color: white;">SignIn Here
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" routerLink="/client" [skipLocationChange]="true">
+                              <strong>SignIn Client</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/driver" [skipLocationChange]="true">
+                              <strong>SignIn Driver</strong>
+                           </a>
+                           <a class="dropdown-item" routerLink="/admin" [skipLocationChange]="true">
+                              <strong>SignIn Admin</strong>
+                           </a>
+                        </div>
+                     </div>
+                     <!-- get code from getbootstrap.com -- Components -- Badge -- Links -->
+                     <!-- <a routerLink="/auth/login" class="badge bg-dark" style="font-size: 14px">SignIn Here</a> -->
+                     <!-- make your code using router link as shown below, uncomment to use -->
+                     <!-- <a routerLink="/register">SignUp Here</a> -->
+                  </div>
+                  <button type="submit" class="btn btn-dark">Submit</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

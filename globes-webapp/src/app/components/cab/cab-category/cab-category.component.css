@@ -1,0 +1,24 @@
+.img-fluid {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   /*
+   margin-top: auto;
+   margin-bottom: auto;
+   */
+}
+
+
+/* 
+.img-fluid {
+   width: 50px;
+   height: 50px;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-top: -25px;
+   margin-left: -25px;
+}
+   margin-top = needs to be half of the height
+   margin-left = needs to be half of the width 
+*/

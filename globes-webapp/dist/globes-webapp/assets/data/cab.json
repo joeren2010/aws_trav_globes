@@ -1,0 +1,98 @@
+[
+    {
+        "cabId": 301,
+        "cabTitle": "Pontiac 2023",
+        "cabDescription": "Large capacity for your family... you save more with each trip",
+        "category": {
+          "categoryId": 501,
+          "categoryName": "6-Seater",
+          "categoryDescription": "Pontiac 2023 - A Nice 6-Seater Grey Color Car",
+          "categoryImageUrl": ["https://thumbs.dreamstime.com/z/car-road-19049658.jpg"],
+          "active": true,
+          "addedOn": "April 15 2020"
+        },
+        "cabColor": "Grey",
+        "images": [
+          "https://thumbs.dreamstime.com/z/car-road-19049658.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX355_.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX522_.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX450_.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX425_.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX569_.jpg"
+        ],
+        "thumbnailImage": 0,
+        "price": 30,
+        "addedOn": "October 25 2021",
+        "rating": 4,  
+        "unitPrice": 0.50,
+        "tripDistance": 100,
+        "travelCharges": 50,
+        "itemsSubTotal": 80,                    
+        "pickupLoc": "Pueblo, CO"                   
+    }, 
+    {
+        "cabId": 302,
+        "cabTitle": "Corvette 2023",
+        "cabDescription": "Standard car capacity, portable and cute for your family... to travel in style",
+        "category": {
+          "categoryId": 502,
+          "categoryName": "4-Seater",
+          "categoryDescription": "Corvette 2023 - An awesome 4-Seater White Color Car",
+          "categoryImageUrl": ["https://thumbs.dreamstime.com/z/speeding-sports-car-11129030.jpg"],
+          "active": true,
+          "addedOn": "August 10 2020"
+        },
+        "cabColor": "White",
+        "images": [
+          "https://thumbs.dreamstime.com/z/speeding-sports-car-11129030.jpg",
+          "https://m.media-amazon.com/images/I/61UdeL7aO-L._AC_SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/61UdeL7aO-L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61UdeL7aO-L._AC_SX569_.jpg",
+          "https://m.media-amazon.com/images/I/61UdeL7aO-L._AC_SX569_.jpg",
+          "https://m.media-amazon.com/images/I/61UdeL7aO-L._AC_SX569_.jpg",
+          "https://m.media-amazon.com/images/I/61UdeL7aO-L._AC_SX569_.jpg"
+        ],
+        "thumbnailImage": 0,
+        "price": 60,
+        "addedOn": "November 01 2021",
+        "rating": 4.5,
+        "unitPrice": 0.50,
+        "tripDistance": 250,
+        "travelCharges": 0,         
+        "itemsSubTotal": 0,
+        "pickupLoc": "Denver, CO"
+    },
+    {
+        "cabId": 303,
+        "cabTitle": "Chevrolet 2021",
+        "cabDescription": "Largest capacity vehicle, design to give your family and you... maximum comfort and joy",
+        "category": {
+          "categoryId": 503,
+          "categoryName": "8-Seater",
+          "categoryDescription": "Chevrolet 2021 - A Great 8-Seater Blue Color Car",
+          "categoryImageUrl": ["https://thumbs.dreamstime.com/z/fast-car-road-13038770.jpg"],
+          "active": true,
+          "addedOn": "July 15 2021"
+        },
+        "cabColor": "Blue",
+        "images": [
+          "https://thumbs.dreamstime.com/z/fast-car-road-13038770.jpg",
+          "https://thumbs.dreamstime.com/z/car-motion-25791275.jpg",
+          "https://thumbs.dreamstime.com/b/car-city-2772336.jpg",
+          "https://thumbs.dreamstime.com/b/moving-car-29334962.jpg",
+          "https://thumbs.dreamstime.com/b/car-city-2772336.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX425_.jpg",
+          "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX569_.jpg"
+        ],
+        "thumbnailImage": 0,
+        "price": 45,
+        "addedOn": "August 12 2021",
+        "rating": 4,
+        "unitPrice": 0.50,
+        "tripDistance": 50,
+        "travelCharges": 0,         
+        "itemsSubTotal": 0,
+        "pickupLoc": "Golden, CO"         
+    }
+]

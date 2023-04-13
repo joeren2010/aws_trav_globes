@@ -1,0 +1,69 @@
+<div class="row w-100 m-0 mt-2">
+   <div class="col-12">
+      <div *ngIf="resvcabService.wishlistCabs.length === 0">
+         <div class="card">
+            <div class="card-body">
+               <div class="d-flex flex-column justify-content-center align-items-center">
+                  <img src="./../../../assets/empty.svg" alt="" class="img-fluid" width="256px" height="256px">
+                  <h5 class="card-title mt-2">
+                     Your Wishlist Is Empty
+                  </h5>
+                  <button class="btn btn-dark mt-4" routerLink="/resv/resvcab">Book My Rides</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div *ngIf="resvcabService.wishlistCabs.length !== 0">
+         <div class="card shadow-sm mb-2" *ngFor="let cab of resvcabService.wishlistCabs; index as idx">
+            <div class="card-body">
+               <div class="row w-100 m-0">
+                  <div class="col-12 col-sm-2 d-flex justify-content-center align-items-center">
+                     <img [src]="cab['images'][0]" [alt]="cab['cabTitle']" class="img-fluid" width="128px"
+                        height="128px">
+                     <!-- <img [src]="cab['cabCategory']['categoryImageUrl']" [alt]="cab['cabTitle']" class="img-fluid" width="128px"
+                        height="128px"> -->
+                  </div>
+                  <div class="col-12 col-sm-10 mt-2 mt-sm-0">
+                     <div class="d-flex flex-column">
+                        <h5 class="m-0 font-weight-bold card-title mb-1">
+                           <strong>{{ cab["cabTitle"] }}</strong>
+                        </h5>
+                        <p class="card-text text-limit m-0 mb-1">
+                           {{ cab["cabDescription"] }}
+                        </p>
+                        <p class="card-text m-0 mb-1">
+                           <span class="text-muted mr-2">Base Price: </span>
+                           <span class="font-weight-bold">{{ cab["price"] | currency:'USD':'symbol' }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted mr-2">Quantity: </span>
+                           <span class="font-weight-bold mr-2">{{ cab["quantity"] }}</span>
+                        </p>
+                        <p class="card-text m-0 mb-3">
+                           <span class="text-muted">Trip Distance: </span>
+                           <span class="font-weight-bold">{{ cab["tripDistance"] || 0 }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Travel Cost: </span>
+                           <span class="font-weight-bold">
+                              {{ cab['travelCharges'] | currency:'USD':'symbol' || 0}}
+                           </span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Sub Total: </span>
+                           <span class="font-weight-bold">
+                              {{ cab['itemsSubTotal'] | currency:'USD':'symbol' || 0}}
+                           </span>
+                        </p>
+                        <div class="d-flex align-items-center">
+                           <button type="button" class="btn btn-sm btn-dark me-1"
+                              (click)="resvcabService.addCabToCart(cab, true, idx)">
+                              Add To Booking Cart</button>
+                           <button type="button" class="btn btn-sm btn-danger me-1"
+                              (click)="removeCabFromWishlist(idx)">Remove From Wishlist</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

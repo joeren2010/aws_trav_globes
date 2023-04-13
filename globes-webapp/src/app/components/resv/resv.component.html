@@ -1,0 +1,182 @@
+<div class="container-fluid py-3">
+  <div class="row w-100 m-0">
+    <div class="col-12 {{ viewResvBool ? 'col-sm-8' : 'col-sm' }}">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-0">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <div class="d-flex flex-column align-items-start">
+                <h4>Reservations</h4>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="d-flex justify-content-end align-items-center">
+                <button type="submit" class="btn btn-primary mr-1 me-2" (click)="updateStatus()">
+                  <strong>Save Resv Data</strong>
+                </button>
+                <button type="submit" class="btn btn-secondary mr-1" (click)="locStorage()">
+                  <strong>Cleanout Local Storage</strong>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table table-flush m-0">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Resv Id</th>
+                <th>Resv Date</th>
+                <th>Client Name</th>
+                <th>Client Id</th>
+                <th>Client Email</th>
+                <th>Client Phone</th>
+                <th>Cart Id</th>
+                <th>Pickup Loc</th>
+                <th>Dropoff Loc</th>
+                <th>Trip Dist</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+                <th>Driver Name</th>
+                <th>Dr. Id</th>
+                <th>Cab Id</th>
+                <th>Status</th>
+                <th style="text-indent: 200px">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let resv of resvObservable | async; index as idx">
+                <th scope="row">{{ idx + 1 }}</th>
+                <td>{{ resv["resvDate"] | date: 'MM/dd/yyyy' }}</td>
+                <td>{{ resv["clientName"] }}</td>
+                <td>{{ resv["clientId"] }}</td>
+                <td>{{ resv["clientEmail"] }}</td>
+                <td>{{ resv["clientPhone"] }}</td>
+                <td>{{ resv["cartId"] }}</td>
+                <td>{{ resv["pickupLoc"] }}</td>
+                <td>{{ resv["dropoffLoc"] }}</td>
+                <td>{{ resv["tripDistance"] }}</td>
+                <td>{{ resv["unitPrice"] | currency : "USD" }}</td>
+                <td>{{ resv["itemsSubTotal"] | currency : "USD" }}</td>
+                <td>{{ resv["driverName"] }}</td>
+                <td>{{ resv["driverId"] }}</td>
+                <td>{{ resv["cabId"] }}</td>
+                <td>{{ resv["resvStatus"] }}</td>
+                <td>
+                  <ul>
+                    <button type="button" class="btn btn-sm btn-dark me-1 mb-1" id="btn-jj"
+                      *ngIf="resvStatus.length != 0; else greyOut">
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="selected"
+                        (change)="changeStatus(selected)" #selected>
+                        <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                    [formGroup]="selectForm" formControlName="resvmgtStatus" id="form-jj"
+                                    (click)="changeStatus()"> -->
+                        <option selected class="badge bg-secondary" style="font-size: 14px">
+                          <span>Approved</span>
+                        </option>
+                        <option value="1" class="badge bg-success" style="font-size: 14px">
+                          <span>Pending</span>
+                        </option>
+                        <option value="2" class="badge bg-danger" style="font-size: 14px">
+                          <span>Rejected</span>
+                        </option>
+                        <option value="3" class="badge bg-primary" style="font-size: 14px">
+                          <span>Pickedup</span>
+                        </option>
+                        <option value="4" class="badge bg-warning" style="font-size: 14px">
+                          <span>Dropped</span>
+                        </option>
+                        <option value="5" class="badge bg-dark" style="font-size: 14px">
+                          <span>Cancelled</span>
+                        </option>
+                      </select>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-dark me-1 mb-1 {{
+                        viewResvIdx === idx ? 'd-flex align-items-center' : ''
+                      }}" (click)="openViewModal(resv, idx)">
+                      View Details
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary me-1 mb-1">
+                      Update Resv
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger me-1 mb-1" (click)="deleteResv(resv.resvId)">
+                      Delete
+                    </button>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4" *ngIf="viewResvBool">
+      <div class="card">
+        <div class="card-header bg-white border-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5>Cab Info</h5>
+            <a type="button" class="btn-sm btn-dark" (click)="closeViewModal()">
+              close
+            </a>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-flush m-0">
+            <thead class="thead-light">
+              <tr>
+                <th>Name</th>
+                <th>Base Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cab of resvModel.cab; index as idx">
+                <td>
+                  <div class="d-flex flex-column">
+                    <span>{{ cab["cabTitle"] }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex flex-column">
+                    <span>{{
+                      cab["price"] | currency : "USD" : "symbol" : "1.0"
+                      }}</span>
+                  </div>
+                </td>
+                <td class="text-center">{{ cab["quantity"] }}</td>
+                <td class="fw-bold text-center">
+                  {{ cab["totalPrice"] | currency : "USD" : "symbol" : "1.0" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- grey-out function = disabled button and form -->
+<ng-template #greyOut>
+  <button type="button" class="btn btn-sm btn-dark me-1 mb-1" id="btn-jj" disabled>
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="form-jj" disabled>
+      <option selected class="badge badge-secondary">
+        <span>Pending</span>
+      </option>
+      <option value="1" class="badge badge-success">
+        <span>Approved</span>
+      </option>
+      <option value="2" class="badge badge-danger">
+        <span>Rejected</span>
+      </option>
+      <option value="3" class="badge badge-primary">
+        <span>Pickedup</span>
+      </option>
+      <option value="4" class="badge badge-warning">
+        <span>Dropped</span>
+      </option>
+      <option value="5" class="badge badge-dark"><span>Cancelled</span></option>
+    </select>
+  </button>
+</ng-template>

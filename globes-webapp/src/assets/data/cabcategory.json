@@ -1,0 +1,26 @@
+[
+  {
+    "categoryId": 501,
+    "categoryName": "6-Seater",
+    "categoryDescription": "Pontiac 2023 - A Nice 6-Seater Grey Color Car",
+    "categoryImageUrl": ["https://thumbs.dreamstime.com/z/car-road-19049658.jpg"],
+    "active": true,
+    "addedOn": "April 15 2020"
+  },
+  {
+    "categoryId": 502,
+    "categoryName": "4-Seater",
+    "categoryDescription": "Corvette 2023 - An awesome 4-Seater White Color Car",
+    "categoryImageUrl": ["https://thumbs.dreamstime.com/z/speeding-sports-car-11129030.jpg"],
+    "active": false,
+    "addedOn": "August 10 2020"
+  },
+  {
+    "categoryId": 503,
+    "categoryName": "8-Seater",
+    "categoryDescription": "Chevrolet 2021 - A Great 8-Seater Blue Color Car",
+    "categoryImageUrl": ["https://thumbs.dreamstime.com/z/fast-car-road-13038770.jpg"],
+    "active": false,
+    "addedOn": "July 15 2021"
+  }
+]

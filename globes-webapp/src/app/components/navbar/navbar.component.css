@@ -1,0 +1,39 @@
+.bg-dark {
+   background-color: #0c0d0d !important;
+}
+
+.navbar {
+   padding: 0.7rem 1rem;
+}
+
+
+/* 
+.navbar {
+   position: relative;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+   padding: .5rem 1rem;
+}
+*/
+
+
+/*
+.bg-dark {
+   --bs-bg-opacity: 1;
+   background-color: #055160 !important;
+}
+
+.navbar-dark .navbar-brand {
+   color: #ffffff;
+   font-weight: 700;
+}
+
+
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .show>.nav-link {
+   color: #ffffff;
+   font-weight: 600;
+}
+*/

@@ -1,0 +1,16 @@
+.container-about {
+   margin-top: 25px;
+   margin-left: 50px;
+   margin-right: 50px;
+   margin-bottom: 25px;
+   text-align: justify;
+   text-justify: inter-word;
+}
+
+#about-head {
+   font-weight: bolder;
+}
+
+#about-body {
+   font-size: x-large;
+}

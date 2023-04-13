@@ -1,0 +1,51 @@
+[
+    {
+      "categoryId": 1,
+      "categoryName": "Laptop",
+      "categoryDescription": "A laptop computer, sometimes called a notebook computer by manufacturers, is a battery- or AC-powered personal computer generally smaller than a briefcase that can easily be transported and conveniently used in temporary spaces such as on airplanes.",
+      "categoryImageUrl": "",
+      "active": true,
+      "addedOn": "10 August 2020"
+    },
+    {
+        "categoryId": 2,
+        "categoryName": "Skincare",
+        "categoryDescription": "Skin care is a range of practices that support skin integrity, enhance its appearance, and relieve skin conditions.",
+        "categoryImageUrl": "",
+        "active": false,
+        "addedOn": "11 August 2020"
+      },
+  {
+        "categoryId": 3,
+        "categoryName": "Smart Phone",
+        "categoryDescription": "A smartphone is a cellular telephone with an integrated computer and other features not originally associated with telephones such as an operating system, web browsing, and the ability to run software applications.",
+        "categoryImageUrl": "",
+        "active": false,
+        "addedOn": "11 August 2020"
+      },
+	{
+        "categoryId": 4,
+        "categoryName": "Home-decoration",
+        "categoryDescription": "Home Décor Products was founded in November 2000 with the acquisition of Bathopia, a bath and kitchen e-tailer. Bathopia was relaunched as HomeClick.com, primarily an online retailer of bath and kitchen products.",
+        "categoryImageUrl": "",
+        "active": false,
+        "addedOn": "11 August 2020"
+      },
+      {
+        "categoryId": 5,
+        "categoryName": "Groceries",
+        "categoryDescription": "A grocery store (AE), grocery shop (BE) or simply grocery[1] is a store that primarily retails a general range of food products,[2] which may be fresh or packaged.",
+        "categoryImageUrl": "",
+        "active": false,
+        "addedOn": "11 August 2020"
+      },
+	{
+        "categoryId": 6,
+        "categoryName": "Fragrances",
+        "categoryDescription": "Perfume is a liquid that gives people, things and rooms a good smell. It is made of oils which give off scent to the surrounding air.",
+        "categoryImageUrl": "",
+        "active": false,
+        "addedOn": "11 August 2020"
+      }
+
+]

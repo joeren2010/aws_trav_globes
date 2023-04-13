@@ -1,0 +1,119 @@
+<div class="row w-100 m-0 mt-2">
+   <div class="col-12 col-sm-8 order-1 order-sm-0 mt-2 mt-sm-0">
+      <div *ngIf="resvcabService.cabs.length === 0">
+         <div class="card">
+            <div class="card-body">
+               <div class="d-flex flex-column justify-content-center align-items-center">
+                  <img src="./../../../assets/empty.svg" alt="" class="img-fluid" width="256px" height="256px">
+                  <h5 class="card-title mt-2">
+                     Your Cart Is Empty
+                  </h5>
+                  <button class="btn btn-dark mt-4" routerLink="/resv/resvcab">Book My Rides</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div *ngIf="resvcabService.cabs.length !== 0">
+         <div class="card shadow-sm mb-2" *ngFor="let cab of resvcabService.cabs; index as idx">
+            <div class="card-body">
+               <div class="row w-100 m-0">
+                  <div class="col-12 col-sm-2 d-flex justify-content-center align-items-center">
+                     <img [src]="cab['images'][0]" [alt]="cab['cabTitle']" class="img-fluid" width="128px"
+                        height="128px">
+                     <!-- <img [src]="cab['cabCategory']['categoryImageUrl']" [alt]="cab['cabTitle']" class="img-fluid"
+                        width="128px" height="128px"> -->
+                  </div>
+                  <div class="col-12 col-sm-10 mt-2 mt-sm-0">
+                     <div class="d-flex flex-column">
+                        <h5 class="m-0 font-weight-bold card-title mb-1">
+                           <strong>{{ cab["cabTitle"] }}</strong>
+                        </h5>
+                        <p class="card-text text-limit m-0 mb-0">
+                           {{ cab["cabDescription"] }}
+                        </p>
+                        <p class="card-text m-0 mb-0">
+                           <span class="text-muted mr-2">Base Price: </span>
+                           <span class="font-weight-bold">{{ cab["price"] | currency:'USD':'symbol' }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted mr-2">Quantity: </span>
+                           <span class="font-weight-bold mr-2">{{ cab["quantity"] }}</span>
+                        </p>
+                        <p class="card-text m-0 mb-0">
+                           <span class="text-muted">Pickup Loc.: </span>
+                           <span class="font-weight-bold">{{ cab["pickupLoc"] || 0 }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Pickup Date: </span>
+                           <span class="font-weight-bold">{{ cab["pickupDate"] || 0 }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Pickup Time: </span>
+                           <span class="font-weight-bold">{{ cab["pickupTime"] || 0 }}</span>
+                        </p>
+                        <p class="card-text m-0 mb-0">
+                           <span class="text-muted">Dropoff Loc.: </span>
+                           <span class="font-weight-bold">{{ cab["dropoffLoc"] || 0 }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Dropoff Date: </span>
+                           <span class="font-weight-bold">{{ cab["dropoffDate"] || 0 }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Dropoff Time: </span>
+                           <span class="font-weight-bold">{{ cab["dropoffTime"] || 0 }}</span>
+                        </p>
+                        <p class="card-text m-0 mb-3">
+                           <span class="text-muted">Trip Distance: </span>
+                           <span class="font-weight-bold">{{ cab["tripDistance"] || 0 }}</span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Travel Cost: </span>
+                           <span class="font-weight-bold">
+                              {{ cab['travelCharges'] | currency:'USD':'symbol' || 0}}
+                           </span>
+                           {{ [" || "] }}
+                           <span class="text-muted">Sub Total: </span>
+                           <span class="font-weight-bold">
+                              {{ cab['itemsSubTotal'] | currency:'USD':'symbol' || 0}}
+                           </span>
+                        </p>
+                     </div>
+                     <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-sm btn-dark me-1"
+                           (click)="addCabToWishlist(cab, true, idx)">Add To Wishlist</button>
+                        <button type="button" class="btn btn-sm btn-dark me-1"
+                           (click)="saveForLater(cab, true, idx)">Save For Later</button>
+                        <button type="button" class="btn btn-sm btn-danger me-1"
+                           (click)="removeCabFromCart(idx)">Remove</button>
+                        <button type="button" class="btn btn-sm btn-dark me-1" routerLink="/cart/saved-items">
+                           View Saved Items</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-12 col-sm-4 order-0 order-sm-1">
+      <div class="card shadow-sm sticky-top">
+         <div class="card-header bg-white">
+            <h5 class="card-title">Booking Summary</h5>
+         </div>
+         <div class="card-body">
+            <div class="d-flex flex-column">
+               <p class="card-text d-flex justify-content-between m-0 mb-2">
+                  <span class="text-muted">Total Items:</span>
+                  <span class="font-weight-bold">{{ totalItems || 0 }}</span>
+               </p>
+               <p class="card-text d-flex justify-content-between m-0 mb-2">
+                  <span class="text-muted">Total Price:</span>
+                  <span class="font-weight-bold">{{ totalPrice || 0 | currency:'USD':'symbol' }}</span>
+               </p>
+            </div>
+         </div>
+         <div class="card-footer bg-white border-0">
+            <button type="button" class="btn btn-sm btn-dark w-100" routerLink="#" (click)="saveCart()"
+               (click)="bookResv()" [disabled]="resvcabService.cabs.length === 0">Proceed To Payment
+            </button>
+            <!-- <button type="button" class="btn btn-sm btn-dark w-100" routerLink="/payment"
+               [disabled]="resvcabService.cabs.length === 0" (click)="saveCart()">Proceed To Payment
+            </button> -->
+         </div>
+      </div>
+   </div>
+</div>

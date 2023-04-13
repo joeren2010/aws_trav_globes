@@ -1,0 +1,32 @@
+[
+    {
+        "resccabId": 701,
+        "pickupLoc": "Pueblo, CO",
+        "pickupDate": "April 15 2020",
+        "pickupTime": "8:00 AM",
+        "dropoffLoc": "Denver, CO",
+        "dropoffDate": "April 15 2020",
+        "dropoffTime": "9:00 AM",
+        "resvStatus": "Active"
+    }, 
+    {
+        "resccabId": 702,
+        "pickupLoc": "Tucson, AZ",
+        "pickupDate": "July 15 2022",
+        "pickupTime": "7:00 AM",
+        "dropoffLoc": "Phoenix, CO",
+        "dropoffDate": "July 16 2022",
+        "dropoffTime": "6:00 PM",
+        "resvStatus": "Active"
+    },
+    {
+        "resccabId": 703,
+        "pickupLoc": "Buffalo, NY",
+        "pickupDate": "October 18 2021",
+        "pickupTime": "9:00 AM",
+        "dropoffLoc": "Millvilles, NJ",
+        "dropoffDate": "October 18 2021",
+        "dropoffTime": "4:00 PM",
+        "resvStatus": "InActive"
+    }
+]

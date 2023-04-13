@@ -1,0 +1,122 @@
+<!-- <div class="col-12 col-sm-8 order-1 order-sm-0"> -->
+<div class="container-fluid mt-2">
+   <div class="row w-100 m-0 mt-2">
+      <div class="col-12 col-sm-10 order-0 order-sm-1">
+         <div class="card shadow-sm-1">
+            <div class="card-body p-1">
+               <form [formGroup]="rescForm" id="rescform">
+                  <!-- <form [formGroup]="rescForm" id="rescform" action="cart.component.html" method="POST"> -->
+                  <div class="form-group col-12 mt-2">
+                     <div class="row">
+                        <div class="col">
+                           <input type="text" class="form-control" name="pickupLoc" formControlName="pickupLoc"
+                              placeholder="Pickup Location" id="pickupLoc" required>
+                        </div>
+                        <div class="col">
+                           <input type="date" class="form-control" name="pickupDate" formControlName="pickupDate"
+                              formControlName="pickupDate" placeholder="Pickup Date" min="{{minDate}}">
+                        </div>
+                        <div class="col">
+                           <input type="text" class="form-control" name="pickupTime" formControlName="pickupTime"
+                              formControlName="pickupTime" [ngxTimepicker]="picker1" placeholder="Pickup Time">
+                           <ngx-material-timepicker #picker1></ngx-material-timepicker>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group col-12 mt-2">
+                     <div class="row">
+                        <div class="col">
+                           <input type="text" class="form-control" name="dropoffLoc" formControlName="dropoffLoc"
+                              placeholder="Dropoff Location" required>
+                        </div>
+                        <div class="col">
+                           <input type="date" class="form-control" name="dropoffDate" formControlName="dropoffDate"
+                              formControlName="dropoffDate" placeholder="Dropoff Date" min="{{minDate}}">
+                        </div>
+                        <div class="col">
+                           <input type="text" class="form-control" name="dropoffTime" formControlName="dropoffTime"
+                              formControlName="dropoffTime" [ngxTimepicker]="picker2" placeholder="Dropoff Time">
+                           <ngx-material-timepicker #picker2></ngx-material-timepicker>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <div class="col-12 col-sm-2 order-0 order-sm-1">
+         <div class="card shadow-sm text-center">
+            <div class="card-body p-2 pb-1">
+               <div class="row">
+                  <form [formGroup]="rescForm" id="rescform" (keyup.enter)="saveResc()">
+                     <div class="form-group col-12 mt-1">
+                        <input type="text" style="text-align: center" class="form-control" name="tripDistance"
+                           formControlName="tripDistance" placeholder="pls enter total trip distance in miles"
+                           (keypress)="onlyNum($event)" required>
+                     </div>
+                  </form>
+               </div>
+               <div class="row mt-2">
+                  <button type="submit" class="btn btn-success" id="container-jj" disabled (click)="saveResc()">
+                     <strong>Enter Your Trip Info... Select Cab</strong>
+                  </button>
+                  <!-- <button type="submit" class="btn btn-light" disabled>
+                        <strong>Enter Your Trip Info... Select Cab</strong>
+                     </button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="container-fluid mt-2">
+   <div class="row w-100 m-0" *ngIf="fetching">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+         <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+         </div>
+      </div>
+   </div>
+   <div class="row w-100 m-0 mt-2" *ngIf="!fetching">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let cab of cabs">
+         <div class="card shadow-sm" style="height: 100%;">
+            <img [src]="cab['images'][0]" [alt]="" class="card-img-top img mt-2">
+            <!-- <img [src]="cab['category']['categoryImageUrl']" [alt]="" class="card-img-top img mt-2"> -->
+            <div class="card-body">
+               <h5 class="m-0 font-weight-bold card-title">
+                  <strong>{{ cab["cabTitle"] }}</strong>
+               </h5>
+               <p class="card-text text-limit">
+                  <td>
+                     <dl>
+                        {{ ["Type: "] }} {{ cab["category"]["categoryName"] }}
+                        {{ [" || "] }}
+                        {{ ["Color: "] }} {{ cab["cabColor"] }}
+                        <li>
+                           {{ ["Cab Id: "] }} {{ cab["cabId"] }}
+                           {{ [" || "] }}
+                           {{ ["Base Price: "] }} {{ cab["price"] | currency:'USD':'symbol':'1.2' }}
+                        </li>
+                        <li>{{ cab["cabDescription"] }}</li>
+                     </dl>
+                  </td>
+               </p>
+            </div>
+            <div class="card-footer bg-white border-0">
+               <div class="d-flex justify-content-evenly align-items-center">
+                  <button type="button" class="btn btn-sm btn-dark mr-2" (click)="addCabToCart(cab)"
+                     (click)="localCart()" (click)="saveResc()"> Add To Resv Cart
+                  </button>
+                  <button type="button" class="btn btn-sm btn-dark" (click)="addCabToWishlist(cab)"
+                     (click)="saveResc()"> Add To My Wishlist
+                  </button>
+                  <!-- <button type="button" class="btn btn-sm btn-dark mr-2">
+                     Reset Or Cancel
+                  </button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
