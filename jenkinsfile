@@ -1,13 +1,33 @@
 pipeline {
    agent {
-      docker-compose true
+      docker-compose -p -f docker-compose.yml up --build
    }
    stages{
-      stage("example") {
+      stage("hello") {
          steps{
             echo 'hello world'
-            sh 'echo myCustomEnvVar = $myCustomEnvVar'
+         }
+      }
+      stage("build") {
+         steps{
+            echo 'building'
+         }
+      }
+      stage("deploy") {
+         steps{
+            echo 'deploying'
+         }
+      }
+      stage("release") {
+         steps{
+            echo 'releasing'
          }
       }
    }
+
+   post {
+      always {
+         sh "docker-compose down -v"
+      }
+    }
 }
