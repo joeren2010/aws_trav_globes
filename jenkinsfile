@@ -13,6 +13,15 @@ pipeline {
       //       sh "docker-compose -p i-${GIT_BRANCH} -f docker-compose.yml up --build -d"
       //    }
       // }
+      stage("docker-compose") {
+         steps{
+            sh '''
+               docker version               
+               docker info
+               docker-compose version
+            '''
+         }
+      }
       stage("hello") {
          steps{
             echo 'hello world'
