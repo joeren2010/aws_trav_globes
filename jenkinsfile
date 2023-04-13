@@ -1,15 +1,12 @@
 pipeline {
-   agent any
+   agent {
+      docker-compose true
+   }
    stages{
-      stage("verify tooling") {
+      stage("example") {
          steps{
-            sh '''
-               docker version               
-               docker info
-               docker compose version
-               curl --version
-               jq --version
-            '''
+            echo 'hello world'
+            sh 'echo myCustomEnvVar = $myCustomEnvVar'
          }
       }
    }
