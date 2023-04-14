@@ -5,7 +5,10 @@ pipeline {
    // }
    stages{
       stage('Checkout') {
-         git url: 'https://github.com/joeren2010/aws_trav_globes.git', branch: 'master'
+         steps{
+            // echo 'building'
+            git url: 'https://github.com/joeren2010/aws_trav_globes.git', branch: 'master'
+         }
       }
       stage("verify tooling") {
          steps{
