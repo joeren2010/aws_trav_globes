@@ -4,24 +4,6 @@ pipeline {
    //    pollSCM '* * * * *'
    // }
    stages{
-      // stage("docker-compose") {
-      //    steps{
-      //       // echo 'docker-compose'
-      //       // sh "docker-compose build"
-      //       // sh "docker-compose up -d"
-      //       // sh "docker-compose -f docker-compose.yml up --build"
-      //       sh "docker-compose -p i-${GIT_BRANCH} -f docker-compose.yml up --build -d"
-      //    }
-      // }
-      stage("docker-compose") {
-         steps{
-            sh '''
-               docker version               
-               docker info
-               docker-compose version
-            '''
-         }
-      }
       stage("hello") {
          steps{
             echo 'hello world'
@@ -43,9 +25,4 @@ pipeline {
          }
       }
    }
-   // post {
-   //    always {
-   //       sh "docker-compose down || true"
-   //    }
-   // }
 }

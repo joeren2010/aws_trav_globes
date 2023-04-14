@@ -1,5 +1,22 @@
 version: "3.7"
 services:
+  ms_globes_jenkins:
+    image: jenkins/jenkins:lts
+    container_name: ms_globes_jenkins
+    privileged: true
+    user: root
+    ports:
+      - 8010:8080
+      - 50010:50000
+    volumes:
+      - ./globes-dkerfiles/dker_globes_jenk:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - backend
+      - frontend
+    restart: always
+
+
   ms_globes_eureka:
     image: eurekaserver
     container_name: ms_globes_eureka
@@ -10,13 +27,12 @@ services:
       dockerfile: dockerfile
     # expose:
     #   - "8761"
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_reka:/var/lib/mysql'      
+    volumes: 
+      - './globes-dkerfiles/dker_globes_reka:/var/lib/mysql'      
     networks:
       - backend
       - frontend
     restart: always   
-
 
   ms_globes_admin:
     image: ms_globes_admin
@@ -47,8 +63,8 @@ services:
       MYSQL_DATABASE: db_globes_admin   
       MYSQL_USER: joeren
       MYSQL_PASSWORD: joeren
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_adm:/var/lib/mysql'    
+    volumes: 
+      - './globes-dkerfiles/dker_globes_adm:/var/lib/mysql'    
     networks:
       - backend
     restart: always
@@ -83,8 +99,8 @@ services:
       MYSQL_DATABASE: db_globes_cab   
       MYSQL_USER: joeren
       MYSQL_PASSWORD: joeren
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_cab:/var/lib/mysql'    
+    volumes: 
+      - './globes-dkerfiles/dker_globes_cab:/var/lib/mysql'    
     networks:
       - backend
     restart: always
@@ -119,8 +135,8 @@ services:
       MYSQL_DATABASE: db_globes_cart   
       MYSQL_USER: joeren
       MYSQL_PASSWORD: joeren
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_cart:/var/lib/mysql'    
+    volumes: 
+      - './globes-dkerfiles/dker_globes_cart:/var/lib/mysql'    
     networks:
       - backend
     restart: always
@@ -155,8 +171,8 @@ services:
       MYSQL_DATABASE: db_globes_client   
       MYSQL_USER: joeren
       MYSQL_PASSWORD: joeren
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_clt:/var/lib/mysql'    
+    volumes: 
+      - './globes-dkerfiles/dker_globes_clt:/var/lib/mysql'    
     networks:
       - backend
     restart: always
@@ -191,8 +207,8 @@ services:
       MYSQL_DATABASE: db_globes_driver   
       MYSQL_USER: joeren
       MYSQL_PASSWORD: joeren
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_dvr:/var/lib/mysql'    
+    volumes: 
+      - './globes-dkerfiles/dker_globes_dvr:/var/lib/mysql'    
     networks:
       - backend
     restart: always
@@ -227,8 +243,8 @@ services:
       MYSQL_DATABASE: db_globes_resv   
       MYSQL_USER: joeren
       MYSQL_PASSWORD: joeren
-    # volumes: 
-    #   - './globes-dkerfiles/dker_globes_resv:/var/lib/mysql'    
+    volumes: 
+      - './globes-dkerfiles/dker_globes_resv:/var/lib/mysql'    
     networks:
       - backend
     restart: always
