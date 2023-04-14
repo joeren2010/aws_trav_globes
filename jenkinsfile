@@ -6,7 +6,6 @@ pipeline {
    stages{
       stage('Checkout') {
          steps{
-            // echo 'building'
             git url: 'https://github.com/joeren2010/aws_trav_globes.git', branch: 'master'
          }
       }
@@ -15,7 +14,7 @@ pipeline {
             sh '''
                docker version               
                docker info
-               docker compose version
+               docker-compose version
                curl --version
                jq --version
             '''
