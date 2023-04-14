@@ -4,11 +4,25 @@ pipeline {
    //    pollSCM '* * * * *'
    // }
    stages{
-      stage("hello") {
-         steps{
-            echo 'hello world'
-         }
+      stage('Checkout') {
+         git url: 'https://github.com/joeren2010/aws_trav_globes.git', branch: 'master'
       }
+      stage("verify tooling") {
+         steps{
+            sh '''
+               docker version               
+               docker info
+               docker compose version
+               curl --version
+               jq --version
+            '''
+         }
+      }   
+      // stage("gitClone") {
+      //    steps{
+      //       echo 'hello world'
+      //    }
+      // }
       stage("build") {
          steps{
             echo 'building'
