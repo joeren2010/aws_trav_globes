@@ -24,19 +24,17 @@ pipeline {
       }
       stage("start container") {
          steps{
-            bat 'docker-compose up --build --wait'
-            // bat 'docker-compose up -d --no-color --wait'
+            bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
          }
       }
    }
-   // post {
-   //    always{
-   //       bat 'docker compose down'
-   //       // bat 'docker-compose down --remove-opphans -v'
-   //       bat 'docker-compose ps'
-   //    }
-   // }
+   post {
+      always{
+         bat 'docker-compose down --remove-opphans -v'
+         bat 'docker-compose ps'
+      }
+   }
 }
 
 
@@ -62,15 +60,14 @@ pipeline {
 //       stage("start container") {
 //          steps{
 //             sh 'docker-compose up --build --wait'
-//             // sh 'docker-compose up -d --no-color --wait'
+//             // sh 'docker-compose up --build -d --wait'
 //             sh 'docker-compose ps'
 //          }
 //       }
 //    }
 //    post {
 //       always{
-//          bat 'docker compose down'
-//          // bat 'docker-compose down --remove-opphans -v'
+//          bat 'docker-compose down --remove-opphans -v'
 //          bat 'docker-compose ps'
 //       }
 //    }
