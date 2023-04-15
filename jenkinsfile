@@ -1,43 +1,5 @@
-// pipeline {
-//    agent any
-//    //agent { docker {image aws_trav_globes}}
-//    triggers {
-//       pollSCM '* * * * *'
-//    }
-//    stages{
-//       stage('git clone') {
-//          steps{
-//             git 'https://github.com/joeren2010/aws_trav_globes.git'
-//          }
-//       }
-//       stage("verify tools") {
-//          steps{
-//             sh 'docker --version'               
-//             sh 'docker info'
-//             sh 'docker-compose --version'
-//          }
-//       }  
-//       stage("start container") {
-//          steps{
-//             sh 'docker-compose up --wait'
-//             //sh 'docker-compose up -d --no-color --wait'
-//             sh 'docker-compose ps'
-//          }
-//       }
-//    }
-//    post {
-//       always{
-//          sh 'docker compose down'
-//          //sh 'docker-compose down --remove-opphans -v'
-//          sh 'docker-compose ps'
-//       }
-//    }
-// }
-
-
 pipeline {
    agent any
-   // agent { docker {image aws_trav_globes}}
    triggers {
       pollSCM '* * * * *'
    }
@@ -49,16 +11,16 @@ pipeline {
       }
       stage("verify tools") {
          steps{
-            bat 'docker --version'               
-            bat 'docker info'
-            bat 'docker-compose --version'
+            sh 'docker --version'               
+            sh 'docker info'
+            sh 'docker-compose --version'
          }
       }   
       stage("start container") {
          steps{
-            bat 'docker-compose up --build --wait'
-            // bat 'docker-compose up -d --no-color --wait'
-            bat 'docker-compose ps'
+            sh 'docker-compose up --build --wait'
+            // sh 'docker-compose up -d --no-color --wait'
+            sh 'docker-compose ps'
          }
       }
    }
@@ -70,3 +32,39 @@ pipeline {
    //    }
    // }
 }
+
+
+// pipeline {
+//    agent any
+//    triggers {
+//       pollSCM '* * * * *'
+//    }
+//    stages{
+//       stage('git clone') {
+//          steps{
+//             git 'https://github.com/joeren2010/aws_trav_globes.git'
+//          }
+//       }
+//       stage("verify tools") {
+//          steps{
+//             bat 'docker --version'               
+//             bat 'docker info'
+//             bat 'docker-compose --version'
+//          }
+//       }   
+//       stage("start container") {
+//          steps{
+//             bat 'docker-compose up --build --wait'
+//             // bat 'docker-compose up -d --no-color --wait'
+//             bat 'docker-compose ps'
+//          }
+//       }
+//    }
+//    // post {
+//    //    always{
+//    //       bat 'docker compose down'
+//    //       // bat 'docker-compose down --remove-opphans -v'
+//    //       bat 'docker-compose ps'
+//    //    }
+//    // }
+// }
