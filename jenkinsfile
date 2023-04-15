@@ -7,7 +7,7 @@ pipeline {
    stages{
       stage("verify tools") {
          steps{
-            git 'https://github.com/joeren2010/aws_trav_globes.git'
+            //git 'https://github.com/joeren2010/aws_trav_globes.git'
             sh 'docker --version'               
             sh 'docker info'
             sh 'docker-compose --version'
@@ -15,7 +15,7 @@ pipeline {
       }   
       stage("start container") {
          steps{
-            sh 'docker-compose up'
+            sh 'docker-compose up --wait'
             // sh 'docker-compose up -d --no-color --wait'
             sh 'docker-compose ps'
          }
