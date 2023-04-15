@@ -8,9 +8,12 @@ pipeline {
       stage("verify tools") {
          steps{
             //git 'https://github.com/joeren2010/aws_trav_globes.git'
-            sh 'docker version'               
-            sh 'docker info'
-            sh 'docker compose version'
+            bat 'docker version'               
+            bat 'docker info'
+            bat 'docker compose version'
+            // sh 'docker version'               
+            // sh 'docker info'
+            // sh 'docker compose version'
          }
       }   
       // stage("start container") {
