@@ -62,11 +62,11 @@ pipeline {
          }
       }
    }
-   post {
-      always{
-         bat 'docker compose down'
-         // bat 'docker-compose down --remove-opphans -v'
-         bat 'docker-compose ps'
-      }
-   }
+   // post {
+   //    always{
+   //       bat 'docker compose down'
+   //       // bat 'docker-compose down --remove-opphans -v'
+   //       bat 'docker-compose ps'
+   //    }
+   // }
 }
