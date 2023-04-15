@@ -17,6 +17,11 @@ pipeline {
             bat 'docker-compose --version'
          }
       }   
+      stage("prune docker") {
+         steps{
+            bat 'docker system prune -a --volumes -f'
+         }
+      }
       stage("start container") {
          steps{
             bat 'docker-compose up --build --wait'
