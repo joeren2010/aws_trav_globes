@@ -1,5 +1,6 @@
 version: "3.7"
 services:
+  #for running jenkins thru docker-compose
   # ms_globes_jenkins:
   #   image: jenkins/jenkins:lts
   #   container_name: ms_globes_jenkins
