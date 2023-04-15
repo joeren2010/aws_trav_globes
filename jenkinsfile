@@ -56,7 +56,7 @@ pipeline {
       }   
       stage("start container") {
          steps{
-            bat 'docker-compose up --wait'
+            bat 'docker-compose up --build --wait'
             // bat 'docker-compose up -d --no-color --wait'
             bat 'docker-compose ps'
          }
