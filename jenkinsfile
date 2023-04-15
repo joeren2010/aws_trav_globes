@@ -1,44 +1,31 @@
 pipeline {
    agent any
+   // agent { docker {image aws_trav_globes}}
    // triggers {
    //    pollSCM '* * * * *'
    // }
    stages{
-      stage('Checkout') {
+      stage("verify tools") {
          steps{
-            git url: 'https://github.com/joeren2010/aws_trav_globes.git', branch: 'master'
-         }
-      }
-      stage("verify tooling") {
-         steps{
-            sh '''
-               docker version               
-               docker info
-               docker-compose version
-               curl --version
-               jq --version
-            '''
+            git 'https://github.com/joeren2010/aws_trav_globes.git'
+            sh 'docker --version'               
+            sh 'docker info'
+            sh 'docker-compose --version'
          }
       }   
-      // stage("gitClone") {
-      //    steps{
-      //       echo 'hello world'
-      //    }
-      // }
-      stage("build") {
+      stage("start container") {
          steps{
-            echo 'building'
+            sh 'docker-compose up'
+            // sh 'docker-compose up -d --no-color --wait'
+            sh 'docker-compose ps'
          }
       }
-      stage("deploy") {
-         steps{
-            echo 'deploying'
-         }
-      }
-      stage("release") {
-         steps{
-            echo 'releasing'
-         }
+   }
+   post {
+      always{
+         sh 'docker-compose down'
+         // sh 'docker-compose down --remove-opphans -v'
+         sh 'docker-compose ps'
       }
    }
 }
