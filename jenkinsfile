@@ -13,19 +13,19 @@ pipeline {
             sh 'docker compose version'
          }
       }   
-      stage("start container") {
-         steps{
-            sh 'docker compose up --wait'
-            // sh 'docker-compose up -d --no-color --wait'
-            sh 'docker-compose ps'
-         }
-      }
+      // stage("start container") {
+      //    steps{
+      //       sh 'docker compose up --wait'
+      //       // sh 'docker-compose up -d --no-color --wait'
+      //       sh 'docker-compose ps'
+      //    }
+      // }
    }
-   post {
-      always{
-         sh 'docker compose down'
-         // sh 'docker-compose down --remove-opphans -v'
-         sh 'docker-compose ps'
-      }
-   }
+   // post {
+   //    always{
+   //       sh 'docker compose down'
+   //       // sh 'docker-compose down --remove-opphans -v'
+   //       sh 'docker-compose ps'
+   //    }
+   // }
 }
