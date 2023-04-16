@@ -2,7 +2,8 @@
 pipeline {
    agent any
    triggers {
-      pollSCM 'H/15 * * * *'
+      cron 'H/15 * * * *'
+      pollSCM 'H * * * *'
    }
    stages{
       stage('git clone') {
@@ -40,13 +41,12 @@ pipeline {
          }
       }
    }
-   // post {
-   //    always{
-   //       bat 'docker-compose stop'
-   //       // bat 'docker-compose down'
-   //       bat 'docker-compose ps'
-   //    }
-   // }
+   post {
+      always{
+         bat 'docker-compose down'
+         bat 'docker-compose ps'
+      }
+   }
 }
 
 
