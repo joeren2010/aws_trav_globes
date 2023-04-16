@@ -2,7 +2,7 @@
 pipeline {
    agent any
    triggers {
-      pollSCM 'H * * * *'
+      pollSCM 'H/15 * * * *'
    }
    stages{
       stage('git clone') {
@@ -19,23 +19,37 @@ pipeline {
       }   
       stage("prune docker") {
          steps{
-            bat 'docker system prune -a --volumes -f'
+            echo 'uncomment code to prune your docker'
+            // bat 'docker system prune -a --volumes -f'
          }
       }
-      stage("start container") {
+      stage("deploy docker") {
          steps{
             bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
          }
       }
-   }
-   post {
-      always{
-         bat 'docker-compose down'
-         bat 'docker-compose ps'
+      stage("quality tests") {
+         steps{
+            echo 'quality testing stage'
+         }
+      }
+      stage("notify others") {
+         steps{
+            echo 'sending notifications'
+         }
       }
    }
+   // post {
+   //    always{
+   //       bat 'docker-compose stop'
+   //       // bat 'docker-compose down'
+   //       bat 'docker-compose ps'
+   //    }
+   // }
 }
+
+
 
 
 //use for linux os
