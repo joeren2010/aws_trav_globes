@@ -26,6 +26,7 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
+            bat 'docker-compose stop'
             bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
          }
@@ -35,7 +36,7 @@ pipeline {
             echo 'quality testing stage'
          }
       }
-      stage("notify others") {
+      stage("send notices") {
          steps{
             echo 'sending notifications'
          }
@@ -43,7 +44,8 @@ pipeline {
    }
    post {
       always{
-         bat 'docker-compose down'
+         bat 'docker-compose stop'
+         // bat 'docker-compose stop'
          bat 'docker-compose ps'
       }
    }
