@@ -26,7 +26,7 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            if [ $( docker ps -a | grep aws_trav_globes | wc -l ) -gt 0 ]; then
+            if { $( docker ps -a | grep aws_trav_globes | wc -l ) -gt 0 }; then
                bat 'docker-compose restart'
                bat 'docker-compose ps'
             else
