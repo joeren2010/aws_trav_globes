@@ -29,7 +29,7 @@ pipeline {
             script {
                def contName = "aws_trav_globes"
                bat "docker container ls"
-               if(docker -a -q -f name=aws_trav_globes){
+               if(docker -a -q -f contName){
                   bat 'docker-compose restart'
                   bat 'docker-compose ps'
                }
