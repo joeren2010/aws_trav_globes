@@ -26,32 +26,9 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            script {
-               def contName = "aws_trav_globes"
-               bat "docker container ls"
-               if(docker -a -q -f contName){
-                  bat 'docker-compose restart'
-                  bat 'docker-compose ps'
-               }
-               else{
-                  bat 'docker-compose up --build -d --wait'
-                  bat 'docker-compose ps'                  
-               }               
-               // def inspectExitCode = bat script: "docker container inspect aws_trav_globes", returnStatus: true
-               // if(inspectExitCode == 0){
-               //    bat 'docker-compose restart'
-               //    bat 'docker-compose ps'
-               // }
-               // else{
-               //    bat 'docker-compose up --build -d --wait'
-               //    bat 'docker-compose ps'                  
-               // }
-            }
+            bat 'docker-compose restart'
+            bat 'docker-compose ps'
          }
-         // steps{
-         //    bat 'docker-compose restart'
-         //    bat 'docker-compose ps'
-         // }
       }
       stage("quality tests") {
          steps{
