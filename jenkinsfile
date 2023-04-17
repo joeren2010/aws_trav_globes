@@ -43,8 +43,8 @@ pipeline {
    }
    post {
       always{
-         bat 'docker-compose stop'
-         // bat 'docker-compose down'
+         // bat 'docker-compose stop'
+         bat 'docker-compose down'
          bat 'docker-compose ps'
       }
    }
