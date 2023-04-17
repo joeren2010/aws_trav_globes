@@ -26,7 +26,7 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            bat 'docker-compose restart -d --wait'
+            bat 'docker-compose restart --wait'
             bat 'docker-compose ps'
          }
       }
