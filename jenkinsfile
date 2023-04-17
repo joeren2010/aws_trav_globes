@@ -26,8 +26,15 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            bat 'docker-compose restart'
+            bat 'docker-compose run --restart'
             bat 'docker-compose ps'
+            // containerExist=$(sudo docker images -q nginx)
+            // if(!aws-trav-globes)
+            //    bat 'docker-compose restart'
+            //    bat 'docker-compose ps'
+            // else
+            //    bat 'docker-compose restart'
+            //    bat 'docker-compose ps'
          }
       }
       stage("quality tests") {
