@@ -26,14 +26,16 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            def inspectExitCode = bat script: "docker container inspect aws_trav_globes", returnStatus: true
-            if(inspectExitCode == 0){
-               bat 'docker-compose restart'
-               bat 'docker-compose ps'
-            }
-            else{
-               bat 'docker-compose up --build -d --wait'
-               bat 'docker-compose ps'                  
+            script {
+               def inspectExitCode = bat script: "docker container inspect aws_trav_globes", returnStatus: true
+               if(inspectExitCode == 0){
+                  bat 'docker-compose restart'
+                  bat 'docker-compose ps'
+               }
+               else{
+                  bat 'docker-compose up --build -d --wait'
+                  bat 'docker-compose ps'                  
+               }
             }
          }
          // steps{
