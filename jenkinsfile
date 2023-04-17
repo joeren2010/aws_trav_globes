@@ -28,7 +28,7 @@ pipeline {
          steps{
             scripts {
                def contExist = docker name: 'aws_trav_globes'
-               if(!contExist inspect >null){
+               if(!contExist -q >null){
                   bat 'docker-compose restart'
                   bat 'docker-compose ps'
                }
