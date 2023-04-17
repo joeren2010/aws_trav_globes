@@ -26,8 +26,13 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            bat 'docker-compose restart'
-            bat 'docker-compose ps'
+            script {
+               def contName = "aws_trav_globes"
+               bat 'docker-compose restart contName'
+               bat 'docker-compose ps'
+            }
+            // bat 'docker-compose restart'
+            // bat 'docker-compose ps'
          }
       }
       stage("quality tests") {
