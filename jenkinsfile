@@ -25,13 +25,17 @@ pipeline {
          }
       }
       stage("deploy docker") {
+         when {
+            expression {
+               return fileExists('aws_trav_globes')
+            }
+         }
          steps{
-            if ( (docker ps -a | grep aws_trav_globes | wc -l ) -gt 0)
-               bat 'docker-compose restart'
-               bat 'docker-compose ps'
-            else
-               bat 'docker-compose up --build -d --wait'
-               bat 'docker-compose ps'
+            bat 'docker-compose restart'
+            bat 'docker-compose ps'
+            // else
+            //    bat 'docker-compose up --build -d --wait'
+            //    bat 'docker-compose ps'
          }
       }
       stage("quality tests") {
