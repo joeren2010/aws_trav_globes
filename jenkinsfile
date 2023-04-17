@@ -27,7 +27,7 @@ pipeline {
       stage("deploy docker") {
          steps{
             // bat 'docker-compose stop'
-            bat 'docker-compose start --build -d --wait'
+            bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
          }
       }
@@ -44,8 +44,8 @@ pipeline {
    }
    post {
       always{
-         bat 'docker-compose stop'
          // bat 'docker-compose stop'
+         bat 'docker-compose down'
          bat 'docker-compose ps'
       }
    }
