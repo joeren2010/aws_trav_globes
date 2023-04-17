@@ -27,6 +27,7 @@ pipeline {
       stage("deploy docker") {
          steps{
             script {
+               def aws_trav_globes = "aws_trav_globes"
                docker container inspect aws_trav_globes || bat 'docker-compose up --build -d --wait'
                // def contName = "aws_trav_globes"
                // bat "docker container ls"
