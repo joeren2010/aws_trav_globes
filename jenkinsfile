@@ -2,7 +2,7 @@
 pipeline {
    agent any
    triggers {
-      cron 'H/15 * * * *'
+      cron 'H * * * *'
       pollSCM 'H * * * *'
    }
    stages{
@@ -27,7 +27,7 @@ pipeline {
       stage("deploy docker") {
          steps{
             // bat 'docker-compose stop'
-            bat 'docker-compose up --build -d --wait'
+            bat 'docker-compose start --build -d --wait'
             bat 'docker-compose ps'
          }
       }
