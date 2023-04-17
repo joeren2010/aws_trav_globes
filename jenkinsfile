@@ -26,16 +26,14 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            scripts {
-               def contExist = docker name: 'aws_trav_globes'
-               if(!contExist -q >null){
-                  bat 'docker-compose restart'
-                  bat 'docker-compose ps'
-               }
-               else{
-                  bat 'docker-compose up --build -d --wait'
-                  bat 'docker-compose ps'                  
-               }
+            def contExist = docker name: 'aws_trav_globes'
+            if(!contExist -q >null){
+               bat 'docker-compose restart'
+               bat 'docker-compose ps'
+            }
+            else{
+               bat 'docker-compose up --build -d --wait'
+               bat 'docker-compose ps'                  
             }
          }
          // steps{
