@@ -26,7 +26,7 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            def contExist = docker name: 'aws_trav_globes'
+            contExist = docker name: 'aws_trav_globes'
             if(!contExist -q >null){
                bat 'docker-compose restart'
                bat 'docker-compose ps'
