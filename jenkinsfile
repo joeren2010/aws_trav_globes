@@ -26,8 +26,8 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            contExist = docker name: 'aws_trav_globes'
-            if(!contExist -q >null){
+            def inspectExitCode = bat script: "docker container inspect aws_trav_globes", returnStatus: true
+            if(inspectExitCode == 0){
                bat 'docker-compose restart'
                bat 'docker-compose ps'
             }
