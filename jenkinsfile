@@ -25,18 +25,23 @@ pipeline {
          }
       }
       stage("deploy docker") {
-         when {
-            expression {
-               return fileExists('aws_trav_globes')
+         steps{
+            scripts {
+               def contExist = docker name: 'aws_trav_globes'
+               if(!contExist inspect >null){
+                  bat 'docker-compose restart'
+                  bat 'docker-compose ps'
+               }
+               else{
+                  bat 'docker-compose up --build -d --wait'
+                  bat 'docker-compose ps'                  
+               }
             }
          }
-         steps{
-            bat 'docker-compose restart'
-            bat 'docker-compose ps'
-            // else
-            //    bat 'docker-compose up --build -d --wait'
-            //    bat 'docker-compose ps'
-         }
+         // steps{
+         //    bat 'docker-compose restart'
+         //    bat 'docker-compose ps'
+         // }
       }
       stage("quality tests") {
          steps{
