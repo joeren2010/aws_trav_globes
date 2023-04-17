@@ -26,15 +26,12 @@ pipeline {
       }
       stage("deploy docker") {
          steps{
-            bat 'docker-compose run --restart'
-            bat 'docker-compose ps'
-            // containerExist=$(sudo docker images -q nginx)
-            // if(!aws-trav-globes)
-            //    bat 'docker-compose restart'
-            //    bat 'docker-compose ps'
-            // else
-            //    bat 'docker-compose restart'
-            //    bat 'docker-compose ps'
+            if [ $( docker ps -a | grep aws_trav_globes | wc -l ) -gt 0 ]; then
+               bat 'docker-compose restart'
+               bat 'docker-compose ps'
+            else
+               bat 'docker-compose up --build -d --wait'
+               bat 'docker-compose ps'
          }
       }
       stage("quality tests") {
