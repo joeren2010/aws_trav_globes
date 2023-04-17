@@ -27,9 +27,10 @@ pipeline {
       stage("deploy docker") {
          steps{
             script {
-               def contName = "aws_trav_globes"
-               bat 'docker-compose restart contName'
-               bat 'docker-compose ps'
+               // def contName = "aws_trav_globes"
+               docker container ls
+               // bat 'docker-compose restart'
+               // bat 'docker-compose ps'
             }
             // bat 'docker-compose restart'
             // bat 'docker-compose ps'
@@ -48,8 +49,8 @@ pipeline {
    }
    post {
       always{
-         // bat 'docker-compose stop'
-         bat 'docker-compose down'
+         bat 'docker-compose stop'
+         // bat 'docker-compose down'
          bat 'docker-compose ps'
       }
    }
