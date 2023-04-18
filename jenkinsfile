@@ -18,13 +18,13 @@ pipeline {
             bat 'docker-compose --version'
          }
       }   
-      stage("stop docker") {
-         steps{
-            bat 'docker-compose stop -t 20'
-            // bat 'docker ps -aq | xargs docker stop'
-            bat 'docker-compose ps'
-         }
-      }
+      // stage("stop docker") {
+      //    steps{
+      //       bat 'docker-compose stop'
+      //       // bat 'docker ps -aq | xargs docker stop'
+      //       bat 'docker-compose ps'
+      //    }
+      // }
       stage("prune docker") {
          steps{
             echo 'uncomment code to prune your docker'
