@@ -24,6 +24,12 @@ pipeline {
             // bat 'docker system prune -a --volumes -f'
          }
       }
+      stage("stop docker") {
+         steps{
+            bat 'docker ps -aq | xargs docker stop'
+            bat 'docker-compose ps'
+         }
+      }
       stage("deploy docker") {
          steps{
             bat 'docker-compose up --build -d --wait'
@@ -41,12 +47,12 @@ pipeline {
          }
       }
    }
-   // post {
-   //    always{
-   //       bat 'docker-compose down'
-   //       bat 'docker-compose ps'
-   //    }
-   // }
+   post {
+      always{
+         bat 'docker ps -aq | xargs docker stop'
+         bat 'docker-compose ps'
+      }
+   }
 }
 
 
