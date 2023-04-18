@@ -33,7 +33,7 @@ pipeline {
       }      
       stage("deploy docker") {
          steps{
-            bat 'docker-compose start'
+            bat 'docker-compose up --abort-on-container-exit'
             // bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
             bat 'docker container ps'
@@ -53,7 +53,8 @@ pipeline {
    }
    post {
       always{
-         bat 'docker-compose kill'
+         bat 'docker-compose stop'
+         // bat 'docker-compose kill'
          // bat 'docker ps -aq | xargs docker stop'
          bat 'docker-compose ps'
       }
