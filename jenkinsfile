@@ -20,8 +20,8 @@ pipeline {
       }   
       stage("stop docker") {
          steps{
-            // bat 'docker-compose down'
-            bat 'docker ps -aq | xargs docker stop'
+            // bat 'docker-compose stop'
+            bat 'docker ps -aq | xargs docker stop -f'
             bat 'docker-compose ps'
          }
       }
@@ -33,8 +33,7 @@ pipeline {
       }      
       stage("deploy docker") {
          steps{
-            bat 'docker-compose up --abort-on-container-exit'
-            // bat 'docker-compose up --build -d --wait'
+            bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
             bat 'docker container ps'
             bat 'docker images'
@@ -53,9 +52,8 @@ pipeline {
    }
    post {
       always{
-         bat 'docker-compose stop'
-         // bat 'docker-compose kill'
-         // bat 'docker ps -aq | xargs docker stop'
+         // bat 'docker-compose down'
+         bat 'docker ps -aq | xargs docker stop -f'
          bat 'docker-compose ps'
       }
    }
