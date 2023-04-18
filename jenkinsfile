@@ -32,8 +32,7 @@ pipeline {
       }      
       stage("deploy docker") {
          steps{
-            bat 'docker-compose up --no-recreate'
-            // bat 'docker-compose up --build -d --wait'
+            bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
             bat 'docker container ps'
             bat 'docker images'
@@ -52,8 +51,9 @@ pipeline {
    }
    post {
       always{
+         bat 'docker-compose stop --force'
          // bat 'docker-compose down'
-         bat 'docker ps -aq | xargs docker stop --force'
+         // bat 'docker ps -aq | xargs docker stop --force'
          bat 'docker-compose ps'
       }
    }
