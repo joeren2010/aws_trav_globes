@@ -34,6 +34,8 @@ pipeline {
          steps{
             bat 'docker-compose up --build -d --wait'
             bat 'docker-compose ps'
+            bat 'docker container ps'
+            bat 'docker images'
          }
       }
       stage("quality tests") {
@@ -47,14 +49,12 @@ pipeline {
          }
       }   
    }
-   post {
-      always{
-         // bat 'docker-compose stop'
-         bat 'docker-compose down'
-         // bat 'docker ps -aq | xargs docker-compose stop'
-         bat 'docker-compose ps'
-      }
-   }
+   // post {
+   //    always{
+   //       bat 'docker-compose down'
+   //       bat 'docker-compose ps'
+   //    }
+   // }
 }
 
 
