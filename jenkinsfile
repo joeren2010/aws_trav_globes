@@ -20,7 +20,7 @@ pipeline {
       }   
       stage("stop docker") {
          steps{
-            bat 'docker-compose kill'
+            bat 'docker-compose down'
             // bat 'docker ps -aq | xargs docker stop'
             bat 'docker-compose ps'
          }
