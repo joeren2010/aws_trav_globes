@@ -33,7 +33,7 @@ pipeline {
       }      
       stage("deploy docker") {
          steps{
-            bat 'docker-compose start'
+            bat 'docker-compose restart'
             bat 'docker-compose ps'
             bat 'docker container ps'
             bat 'docker images'
