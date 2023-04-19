@@ -9,7 +9,7 @@ export class IpaddyService {
 
   public getIpAddy() {
     // return 'localhost'; //public ipv4 addy from aws' ec2 instance    
-    return '172.31.90.36'; //public ipv4 addy from aws' ec2 instance
+    return '172.31.21.241'; //public ipv4 addy from aws' ec2 instance
   }
 
 }
