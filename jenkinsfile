@@ -1,4 +1,61 @@
 //use for windows os
+// pipeline {
+//    agent any
+//    triggers {
+//       // cron 'H * * * *'
+//       pollSCM 'H * * * *'
+//    }
+//    stages{
+//       stage('git clone') {
+//          steps{
+//             git 'https://github.com/joeren2010/aws_trav_globes.git'
+//          }
+//       }
+//       stage("verify tools") {
+//          steps{
+//             bat 'docker --version'               
+//             bat 'docker info'
+//             bat 'docker-compose --version'
+//          }
+//       }   
+//       stage("prune docker") {
+//          steps{
+//             echo 'uncomment code to prune your docker'
+//             // bat 'docker system prune -a --volumes -f'
+//          }
+//       }      
+//       stage("deploy docker") {
+//          steps{
+//             bat 'docker-compose up --build -d --wait'
+//             bat 'docker-compose ps'
+//             bat 'docker container ps'
+//             bat 'docker images'
+//          }
+//       }
+//       stage("quality tests") {
+//          steps{
+//             echo 'quality testing stage'
+//          }
+//       }
+//       stage("send notices") {
+//          steps{
+//             echo 'sending notifications'
+//          }
+//       }   
+//    }
+//    post {
+//       always{
+//          bat 'docker-compose down'
+//          // bat 'docker ps -aq | xargs docker stop'
+//          bat 'docker-compose ps'
+//       }
+//    }
+// }
+
+
+
+
+//use for linux os
 pipeline {
    agent any
    triggers {
@@ -6,30 +63,30 @@ pipeline {
       pollSCM 'H * * * *'
    }
    stages{
-      stage('git clone') {
-         steps{
-            git 'https://github.com/joeren2010/aws_trav_globes.git'
-         }
-      }
+      // stage('git clone') {
+      //    steps{
+      //       git 'https://github.com/joeren2010/aws_trav_globes.git'
+      //    }
+      // }
       stage("verify tools") {
          steps{
-            bat 'docker --version'               
-            bat 'docker info'
-            bat 'docker-compose --version'
+            sh 'docker --version'               
+            sh 'docker info'
+            sh 'docker-compose --version'
          }
       }   
       stage("prune docker") {
          steps{
             echo 'uncomment code to prune your docker'
-            // bat 'docker system prune -a --volumes -f'
+            // sh 'docker system prune -a --volumes -f'
          }
       }      
       stage("deploy docker") {
          steps{
-            bat 'docker-compose up --build -d --wait'
-            bat 'docker-compose ps'
-            bat 'docker container ps'
-            bat 'docker images'
+            sh 'docker-compose up --build -d --wait'
+            sh 'docker-compose ps'
+            sh 'docker container ps'
+            sh 'docker images'
          }
       }
       stage("quality tests") {
@@ -45,51 +102,9 @@ pipeline {
    }
    post {
       always{
-         bat 'docker-compose down'
-         // bat 'docker ps -aq | xargs docker stop'
-         bat 'docker-compose ps'
+         sh 'docker-compose down'
+         // sh 'docker ps -aq | xargs docker stop'
+         sh 'docker-compose ps'
       }
    }
 }
-
-
-
-
-//use for linux os
-// pipeline {
-//    agent any
-//    triggers {
-//       pollSCM 'H * * * *'
-//    }
-//    stages{
-//       stage('git clone') {
-//          steps{
-//             git 'https://github.com/joeren2010/aws_trav_globes.git'
-//          }
-//       }
-//       stage("verify tools") {
-//          steps{
-//             sh 'docker --version'               
-//             sh 'docker info'
-//             sh 'docker-compose --version'
-//          }
-//       }   
-//       stage("prune docker") {
-//          steps{
-//             sh 'docker system prune -a --volumes -f'
-//          }
-//       }
-//       stage("start container") {
-//          steps{
-//             sh 'docker-compose up --build -d --wait'
-//             sh 'docker-compose ps'
-//          }
-//       }
-//    }
-//    post {
-//       always{
-//          sh 'docker-compose down --remove-ophans -v'
-//          sh 'docker-compose ps'
-//       }
-//    }
-// }
