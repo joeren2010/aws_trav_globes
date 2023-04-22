@@ -100,11 +100,11 @@ pipeline {
          }
       }   
    }
-   post {
-      always{
-         sh 'docker-compose down'
-         // sh 'docker ps -aq | xargs docker stop'
-         sh 'docker-compose ps'
-      }
-   }
+   // post {
+   //    always{
+   //       sh 'docker-compose down'
+   //       // sh 'docker ps -aq | xargs docker stop'
+   //       sh 'docker-compose ps'
+   //    }
+   // }
 }
