@@ -63,11 +63,11 @@ pipeline {
       pollSCM 'H * * * *'
    }
    stages{
-      stage('git clone') {
-         steps{
-            git 'https://github.com/joeren2010/aws_trav_globes.git'
-         }
-      }
+      // stage('git clone') {
+      //    steps{
+      //       git 'https://github.com/joeren2010/aws_trav_globes.git'
+      //    }
+      // }
       stage("verify tools") {
          steps{
             sh 'docker --version'               
